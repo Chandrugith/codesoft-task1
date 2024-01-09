@@ -1,7 +1,7 @@
 from chatterbot import ChatBot
 from chatterbot.trainers import ListTrainer
 
-# Create a new chatbot instance
+
 chatbot = ChatBot('My ChatBot')
 
 
