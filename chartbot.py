@@ -1,31 +1,21 @@
-# Rule-based chatbot
-def chatbot_response(user_input):
-    # Convert user input to lowercase for case-insensitive matching
-    user_input = user_input.lower()
+from chatterbot import ChatBot
+from chatterbot.trainers import ListTrainer
 
-    # Define rules and corresponding responses
-    if user_input in ['hello', 'hi', 'hey', 'hola']:
-        return "Hello there! How can I assist you today?"
+# Create a new chatbot instance
+chatbot = ChatBot('My ChatBot')
 
-    elif 'your name' in user_input:
-        return "I am a simple chatbot. You can call me ChatGPT."
 
-    else:
-        return "I'm sorry, I don't understand that. Can you please rephrase or ask something else?"
+trainer = ListTrainer(chatbot)
+conversations = [
+    "Hello, how are you?",
+    "I'm a chatbot, I don't have feelings.",
+    "What is your purpose?",
+    "My purpose is to assist and help you.",
+    "Can you help me with something?",
+    "Yes, I can try my best to help you.",
+]
+trainer.train(conversations)
 
-# Main function to run the chatbot
-def main():
-    print("Chatbot: Hi, I'm ChatGPT. Feel free to ask me anything!")
-    
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() in ['bye', 'exit', 'quit']:
-            print("Chatbot: Goodbye! Have a great day.")
-            break
 
-        response = chatbot_response(user_input)
-        print("Chatbot:", response)
-
-if __name__ == "__main__":
-    main()
-
+response = chatbot.get_response("What can you do?")
+print(response)
